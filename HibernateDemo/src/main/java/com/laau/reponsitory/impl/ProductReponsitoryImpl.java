@@ -18,14 +18,14 @@ import org.hibernate.Session;
 
 /**
  *
- * @author admin
+ * @author ngovanlau
  */
 public class ProductReponsitoryImpl {
     public List<Product> getProducts(Map<String, String> params) {
         try (Session s = HibernateUtils.getFactory().openSession()) {
             CriteriaBuilder b = s.getCriteriaBuilder();
             CriteriaQuery<Product> q = b.createQuery(Product.class);
-            Root r = q.from(Product.class);
+            Root<Product> r = q.from(Product.class);
             q.select(r);
             
             if (params != null && !params.isEmpty()) {

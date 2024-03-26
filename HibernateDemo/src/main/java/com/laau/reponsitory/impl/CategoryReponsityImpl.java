@@ -13,7 +13,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author admin
+ * @author ngovanlau
  */
 public class CategoryReponsityImpl {
     public List<Category> getCategories() {

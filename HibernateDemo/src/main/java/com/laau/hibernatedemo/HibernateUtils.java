@@ -13,6 +13,8 @@ import com.laau.pojo.SaleOrder;
 import com.laau.pojo.Tag;
 import com.laau.pojo.User;
 import java.util.Properties;
+
+import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -21,10 +23,11 @@ import org.hibernate.service.ServiceRegistry;
 
 /**
  *
- * @author admin
+ * @author ngovanlau
  */
 public class HibernateUtils {
 
+    @Getter
     private static final SessionFactory factory;
 
     static {
@@ -52,8 +55,5 @@ public class HibernateUtils {
 
         factory = conf.buildSessionFactory(registry);
     }
-    
-    public static SessionFactory getFactory() {
-        return factory;
-    }
+
 }
