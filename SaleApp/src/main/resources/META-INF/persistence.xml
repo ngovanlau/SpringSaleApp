@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.laau_SaleApp_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.laau.pojo.OrderDetail</class>
+    <class>com.laau.pojo.Product</class>
+    <class>com.laau.pojo.Tag</class>
+    <class>com.laau.pojo.ProdTag</class>
+    <class>com.laau.pojo.Category</class>
+    <class>com.laau.pojo.Comment</class>
+    <class>com.laau.pojo.User</class>
+    <class>com.laau.pojo.SaleOrder</class>
+    <class>com.laau.repositories.NewEntity</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saleapp?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Admin@123"/>
+    </properties>
+  </persistence-unit>
+</persistence>
