@@ -27,11 +27,8 @@ public class IndexController {
     private ProductService productService;
     
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("categories", this.categoryService.getCategories());
-        Map<String, String> params = new HashMap<>();
-        params.put("fromPrice", "18000000");
-        params.put("toPrice", "21000000");
         model.addAttribute("products", this.productService.getProducts(params));
         
         return "index";

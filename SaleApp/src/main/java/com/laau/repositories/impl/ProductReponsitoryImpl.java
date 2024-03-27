@@ -28,13 +28,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class ProductReponsitoryImpl implements ProductRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
-    
+
     @Override
-    public List<Product> getProducts(Map<String,String> params) {
+    public List<Product> getProducts(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
-        
+
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Product> q = b.createQuery(Product.class);
         Root<Product> r = q.from(Product.class);
@@ -44,24 +45,28 @@ public class ProductReponsitoryImpl implements ProductRepository {
             List<Predicate> predicates = new ArrayList<>();
 
             String kw = params.get("kw");
-            
-            if (kw != null)
+
+            if (kw != null) {
                 predicates.add(b.like(r.get("name"), String.format("%%%s%%", kw)));
+            }
 
             String fromPrice = params.get("fromPrice");
-            if (fromPrice != null)
+            if (fromPrice != null) {
                 predicates.add(b.greaterThanOrEqualTo(r.get("price"), Double.parseDouble(fromPrice)));
+            }
 
             String toPrice = params.get("toPrice");
-            if (toPrice != null)
+            if (toPrice != null) {
                 predicates.add(b.lessThanOrEqualTo(r.get("price"), Double.parseDouble(toPrice)));
+            }
 
             String cateId = params.get("cateId");
-            if (cateId != null) 
+            if (cateId != null) {
                 predicates.add(b.equal(r.get("category"), Integer.parseInt(cateId)));
+            }
 
             q.where(predicates.toArray(Predicate[]::new));
-        } 
+        }
 
         q.orderBy(b.desc(r.get("id")));
 
@@ -70,5 +75,9 @@ public class ProductReponsitoryImpl implements ProductRepository {
 
         return products;
     }
-    
+
+    public void addOrUpdate(Product product) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.saveOrUpdate(product);
+    }
 }

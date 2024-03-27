@@ -19,9 +19,9 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <c:forEach items="${categories}" var="c">                
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">${c.name}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">${c.name}</a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </div>
@@ -29,14 +29,23 @@
         </nav>
 
         <ul>
-            
+
         </ul>
 
-        <ul>
-            <c:forEach items="${products}" var="c">
-                <li>${c.name}</li>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <c:forEach items="${products}" var="p">
+                    <div class="card col-md-3 m-2" style="width:400px">
+                        <img class="card-img-top" src="${p.image}" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">${p.name}</h4>
+                            <p class="card-text">${p.price}</p>
+                            <a href="#" class="btn btn-primary">Buy</a>
+                        </div>
+                    </div>
                 </c:forEach>
-        </ul>
+            </div>
+        </div>
 
     </body>
 </html>

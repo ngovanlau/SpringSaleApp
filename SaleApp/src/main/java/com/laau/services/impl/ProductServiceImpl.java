@@ -25,5 +25,10 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getProducts(Map<String, String> params) {
         return this.productRepository.getProducts(params);
     }
+
+    @Override
+    public void addOrUpdate(Product product) {
+        this.productRepository.addOrUpdate(product);
+    }
     
 }
